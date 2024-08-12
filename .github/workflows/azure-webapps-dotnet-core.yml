@@ -73,6 +73,14 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+
+      - name: Azure Login
+        uses: Azure/login@v2.1.0
+        with: 
+          client-id: ${{ env.AZURE_CLIENT_ID }}
+          tenant-id: ${{ env.AZUREAPPSERVICE_TENANTID }}
+          subscription-id: ${{ env.AZUREAPPSERVICE_SUBSCRIPTIONID }}
+          
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
